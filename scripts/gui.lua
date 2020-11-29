@@ -9,8 +9,8 @@ function train_gui.create(player, pdata)
             style = "quick_bar_window_frame",
             --caption = "Default Conditions",
             anchor = {
-                gui = defines.relative_gui_type.train_gui,
-                position = defines.relative_gui_position.left
+                gui = defines.relative_gui_type.train_gui,--luacheck: ignore
+                position = defines.relative_gui_position.left--luacheck: ignore
             },
             ref = {"window"},
             children = {
@@ -39,7 +39,6 @@ end
 
 function train_gui.handle_action(e, msg)
     local pdata = global._pdata[e.player_index]
-    local gui_data = pdata.gui.train
 
     if msg.action == "set_train" then
         local train = msg.train
