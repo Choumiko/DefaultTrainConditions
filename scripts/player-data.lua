@@ -5,6 +5,9 @@ local player_data = {}
 function player_data.init(player_index)
     global._pdata[player_index] = {
         gui = {},
+        train = nil,
+        size = nil,
+        default_conditions = nil
     }
     return global._pdata[player_index]
 end

@@ -48,18 +48,18 @@ event.on_train_schedule_changed(function(e)
     if not e.player_index then return end
     local pdata = global._pdata[e.player_index]
     local train = e.train
-    if not pdata.gui.train.state.train == train then return end
+    if not (train.state == defines.train_state.manual_control and pdata.train == train) then return end
     if train.schedule then
         local schedule = train.schedule
         local records = schedule and schedule.records
         local c_records = #records
-        if c_records > pdata.gui.train.state.size then
+        if c_records > pdata.size then
             records[c_records].wait_conditions = pdata.default_conditions
             train.schedule = schedule
         end
-        pdata.gui.train.state.size = c_records
+        pdata.size = c_records
     else
-        global._pdata[e.player_index].gui.train.state.size = 0
+        pdata.size = 0
     end
 end)
 
