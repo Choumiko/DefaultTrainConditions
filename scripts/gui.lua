@@ -17,9 +17,8 @@ function train_gui.create(player, pdata)
                 {type = "frame", style = "inside_deep_frame", direction = "vertical", style_mods = {padding = 1},
                     children = {
                         {type = "sprite-button",
-                            --caption = "Set default condition",
                             style = "tool_button", sprite = "dtc-paste",
-                            tooltip = "Save the first stations conditions as defaults\nRight click to clear",
+                            tooltip = {"dtc-tooltips.set_default"},
                             actions = {on_click = {gui = "train", action = "set_condition"}}
                         },
                     }
@@ -57,7 +56,12 @@ function train_gui.handle_action(e, msg)
             if train then
                 local records = train.schedule and train.schedule.records[1]
                 if records then
+                    if train.state ~= defines.train_state.manual_control then
+                        game.get_player(e.player_index).print{"dtc-message.train-state-notice"}
+                    end
                     pdata.default_conditions = records.wait_conditions
+                else
+                    game.get_player(e.player_index).print{"dtc-message.no-schedule"}
                 end
             end
         end

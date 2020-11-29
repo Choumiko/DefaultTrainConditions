@@ -20,6 +20,9 @@ end)
 
 event.on_configuration_changed(function(e)
     if migration.on_config_changed(e, {}) then
+        for i, pdata in pairs(global._pdata) do
+            player_data.refresh(game.get_player(i), pdata)
+        end
     end
 end)
 

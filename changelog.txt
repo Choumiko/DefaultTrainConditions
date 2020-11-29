@@ -1,0 +1,8 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: 2020-11-29
+  Features:
+    - Added a button to the locomotive gui to change the default wait conditions:
+      - Left click to save the conditions of the first station in the schedule as the default condition.
+        Every station you add to a train will then have these conditions set
+      - Right click to revert the wait conditions to no condition
